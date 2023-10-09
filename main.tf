@@ -2,17 +2,17 @@ provider "aws" {
 region = var.region
 }
 resource "aws_instance" "web" {
-ami = var.ami_name         # data.aws_ami.ubuntu.id
+ami = data.aws_ami.ubuntu.id
 instance_type = var.instance_type
 availability_zone = var.az1
 key_name = var.key_name
 }
 
-//data "aws_ami" "ubuntu" {
-//  most_recent = true
-//  filter {
-//    name   = "name"
-//    values = [var.ami_name]
-//  }
-//  owners = ["self"]
-//}
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = [var.ami_name]
+  }
+  owners = ["self"]
+}
